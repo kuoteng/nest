@@ -28,14 +28,30 @@
 {% endblock header %}
 
 {% block content %}
-    {% if DEFAULT_PAGINATION %}    
+    {% if DEFAULT_PAGINATION %}
     <div class="archive-container">
         <div class="container content archive">
             <h2><a href="{{ SITEURL }}/{{ articles_page.url }}">{{ NEST_INDEX_CONTENT_TITLE }} {% if articles_page.has_previous() %}<small>- page {{ articles_page.number }}</small>{% endif %}</a></h2>
             <dl class="dl-horizontal">
                 {% for article in articles_page.object_list %}
-                <dt>{{ article.locale_date}}</dt>
-                <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+                  <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
+                    <h2 class="post-title">
+                      {{ article.title }}
+                    </h2>
+                  </a>
+                  <p class="article-summary">
+                  {% if article.has_summary %}
+                    {{ article.summary }}
+                  {% elif article.summary %}
+                    {{ article.summary|striptags|truncate(140) }}
+                  {% endif %}
+                  </p>
+                  <p class="postedby">Posted by
+                  {% for author in article.authors %}
+                    <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                  {% endfor %}
+                   on {{ article.locale_date }}
+                  </p>
                 {% endfor %}
             </dl>
         </div>
