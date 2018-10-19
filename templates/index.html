@@ -36,7 +36,7 @@
                 {% for article in articles_page.object_list %}
                   <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
                     <h2 class="post-title">
-                      [{{article.category}}] {{ article.title }}
+                      [{{ article.category }}] {{ article.title|truncate(20, False, '...', 1) }}
                     </h2>
                   </a>
                   <p class="article-summary">
