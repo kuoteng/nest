@@ -31,9 +31,9 @@
             <h2><a href="{{ SITEURL }}/tags.html">{{ NEST_TAGS_CONTENT_TITLE }}</a></h2>
             <dl class="dl-horizontal">
             	{% for tag, articles in tags|sort %}
-            	{% set articles_count = articles | count %}
-            	<dt><span class="label label-default">{{ articles | count }}</span> {% if articles_count == 1 %}article{% else %}articles{% endif %} {{ NEST_TAGS_CONTENT_LIST }}</dt>
-            	<dd><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></dd>
+            	  {% set articles_count = articles | count %}
+            	  <dt><span class="label label-default">{{ articles_count }}</span></dt>
+            	  <dd><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></dd>
             	{% endfor %}
             </dl>
         </div>
